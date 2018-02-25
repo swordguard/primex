@@ -1,0 +1,118 @@
+.App {
+    width: 1153px;
+    margin: auto;
+    border: black solid 1px;
+    background-color: #ebebeb;
+    margin-bottom: 20px;
+    font-family: 'Helvetica', sans-serif;
+}
+.post-header {
+    width: 1133px;
+    height: 90px;
+    background-color: #14314F;
+    color: white;
+    font-size: xx-large;
+    display: table;
+    padding-left: 20px;
+}
+
+.post-header-inline {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.save-button {
+    background-color: #1DC659;
+    width: 115px;
+    height: 34px;
+    border: none;
+    color: white;
+}
+
+.cancel-button {
+    width: 115px;
+    height: 34px;
+    border: #1D2835 1px solid;
+}
+.button {
+    display: table-cell;
+    padding-right: 17px;
+}
+.disabled {
+    background-color: #ebebeb;
+    cursor: not-allowed;
+}
+.post-create-edit-form {
+    width: 1050px;
+    height: 431px;
+    margin: auto;
+    background-color: white;
+    margin-top: 49px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+}
+
+.post-input {
+    border: #ebebeb 1px solid;
+    width: 919px;
+    height: 49px;
+}
+
+.post-textarea {
+    border: #ebebeb 1px solid;
+    width: 1048px;
+    height: 224px;
+}
+.input-title {
+    margin-top: 20px;
+}
+.input-body {
+    margin-top: 60px;
+}
+input, textarea {
+    padding: 0 5px;
+    font-size: large;
+}
+.post-page, .create-edit-post-page {
+    height: 844px;
+}
+.create-edit-post-buttons {
+    float: right;
+    padding-right: 19px;
+    margin-top: 36px;
+}
+.post-list-item {
+    width: 1129px;
+    height: 90px;
+    padding-left: 20px;
+    padding-right: 4px;
+    display: table;
+    background-color: #ebebeb;
+}
+.post-list-item:nth-child(even) {
+    background-color: white;
+}
+.post-list-item:hover {
+    background-color: #92c689;
+}
+.item-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+.item-inner-buttons {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.post-page-neck {
+    text-align: right;
+    width: 1149px;
+    height: 90px;
+    display: table;
+    padding-right: 4px;
+}
+.neck-button {
+    margin-top: 26px;
+    float: right;
+}
