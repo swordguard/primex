@@ -31,16 +31,12 @@ export default class PostListItem extends React.Component {
 
         return (
             <div className="post-list-item" onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
-                <div className="item-inner">{post.id}</div>
-                <div className="item-inner">{post.title}</div>
-                <div className="item-inner-buttons">
-                    <div style={floatRight} >
+                <div className="item-inner item-id">{post.id}</div>
+                <div className="item-inner item-title">{post.title}</div>
+                    <div className="item-inner-buttons" style={floatRight} >
                         <Button title="Edit Post" onClick={() => onEditClick(post.id)}/>
                         <Button title="Delete Post" onClick={() => onDeleteClick(post.id)}/>
                     </div>
-
-                </div>
-
 
             </div>
         )

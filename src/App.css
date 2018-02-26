@@ -5,20 +5,21 @@
     background-color: #ebebeb;
     margin-bottom: 20px;
     font-family: 'Helvetica', sans-serif;
+    font-size: 16px;
 }
 .post-header {
-    width: 1133px;
+    width: 1153px;
     height: 90px;
     background-color: #14314F;
     color: white;
-    font-size: xx-large;
-    display: table;
-    padding-left: 20px;
+    font-size: 30px;
 }
 
 .post-header-inline {
-    display: table-cell;
-    vertical-align: middle;
+    position: relative;
+    left: 23px;
+    top: 29px;
+    width: inherit;
 }
 
 .save-button {
@@ -27,8 +28,12 @@
     height: 34px;
     border: none;
     color: white;
+    padding-bottom: 8px;
+    padding-top: 9px;
 }
-
+.save-button:hover, .cancel-button:hover{
+    border: white 1px solid;
+}
 .cancel-button {
     width: 115px;
     height: 34px;
@@ -36,23 +41,31 @@
 }
 .button {
     display: table-cell;
-    padding-right: 17px;
+    font-size: 14px;
 }
 .disabled {
     background-color: #ebebeb;
     cursor: not-allowed;
+    border: #1DC659 1px solid;
 }
 .post-create-edit-form {
-    width: 1050px;
+    width: 1048px;
     height: 431px;
-    margin: auto;
+    /*margin: auto;*/
+    margin-left: 37px;
+    /*margin-right: 36px;*/
     background-color: white;
-    margin-top: 49px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
+    padding: 0 16px;
 }
-
+.input-title-label {
+    height: 28px;
+    padding-top: 24px;
+    width: 35px;
+}
+.input-title-body {
+    height: 28px;
+    width: 183px;
+}
 .post-input {
     border: #ebebeb 1px solid;
     width: 919px;
@@ -61,7 +74,7 @@
 
 .post-textarea {
     border: #ebebeb 1px solid;
-    width: 1048px;
+    width: 1042px;
     height: 224px;
 }
 .input-title {
@@ -71,22 +84,23 @@
     margin-top: 60px;
 }
 input, textarea {
-    padding: 0 5px;
-    font-size: large;
+    /*padding: 0 5px;*/
 }
 .post-page, .create-edit-post-page {
-    height: 844px;
+    height: 1024px;
 }
 .create-edit-post-buttons {
     float: right;
-    padding-right: 19px;
-    margin-top: 36px;
+    margin-top: 34px;
+    margin-right: 36px;
+}
+.create-edit-post-buttons .button:nth-of-type(1) {
+    padding-right: 15px;
 }
 .post-list-item {
-    width: 1129px;
+    width: 1153px;
     height: 90px;
-    padding-left: 20px;
-    padding-right: 4px;
+    /*padding-right: 4px;*/
     display: table;
     background-color: #ebebeb;
 }
@@ -94,25 +108,33 @@ input, textarea {
     background-color: white;
 }
 .post-list-item:hover {
-    background-color: #92c689;
+    background-color: #dcf3e0;
 }
 .item-inner {
     display: table-cell;
     vertical-align: middle;
 }
+.item-title {
+    width: 441px;
+}
+.item-id {
+    width: 79px;
+    text-align: center;
+}
 .item-inner-buttons {
     display: table-cell;
     vertical-align: middle;
+    margin-right: 21px;
+    margin-top: 30px;
 }
-
+.item-inner-buttons .button:nth-of-type(1) {
+    padding-right: 12px;
+}
 .post-page-neck {
-    text-align: right;
-    width: 1149px;
     height: 90px;
-    display: table;
-    padding-right: 4px;
 }
 .neck-button {
     margin-top: 26px;
     float: right;
+    margin-right: 21px;
 }

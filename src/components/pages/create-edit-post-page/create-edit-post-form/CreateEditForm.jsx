@@ -12,11 +12,11 @@ export default class CreateEditForm extends React.Component {
         <div>
             <div className="post-create-edit-form">
                 <div className="input-title">
-                    Title
+                    <div className="input-title-label">Title</div>
                     <Input type="text" onChange={onTitleChange} initialValue={initialTitle}/>
                 </div>
                 <div className="input-body">
-                    Body
+                    <div className="input-title-body">Body</div>
                     <Input type="textarea" onChange={onBodyChange} initialValue={initialBody}/>
                 </div>
 

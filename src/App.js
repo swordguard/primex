@@ -95,6 +95,9 @@ class App extends Component {
     onCancelClick() {
         this.setState({
             createEditFormVisible: false,
+            title: '',
+            body: '',
+            id: '',
         })
     }
 
