@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" media="screen" href="/stylesheets/main.css">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="/js/analysis.service.js"></script>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+        google.load("visualization", "1", {packages: ["corechart", "table"]});
+
+        google.setOnLoadCallback(function () {
+
+            function drawChart(data) {
+                var options = {
+                    title: 'B & I Analysis Result',
+                    pieHole: 0.4
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                chart.draw(data, options);
+                google.visualization.events.addListener(chart, 'select', function(e) {
+                    var selection = chart.getSelection();
+                    var label = '';
+                    for (var i = 0; i < selection.length; i++) {
+                        var item = selection[i];
+                        label = data.getFormattedValue(item.row, 0);
+                        callSpecifiedCategory(label)
+                    }
+
+                });
+
+            }
+
+            function drawTable(data) {
+                var table = new google.visualization.Table(document.getElementById('table_div'));
+                table.draw(data, {width: '90%', height: '100%'});
+            }
+
+            function callSpecifiedCategory(label) {
+                Analysis.getCategoryByLabel(label,
+                    function success(result) {
+
+                        if ($('#category-title').length === 0) {
+                            $('#category_table').before('<div id="category-title">' + label + '</div>')
+                        } else {
+                            $('#category-title').text(label)
+                        }
+
+                        var data_table = new google.visualization.DataTable();
+                        data_table.addColumn('string', 'Patient Id');
+                        data_table.addColumn('string', 'History');
+                        var row = []
+                        var coll = []
+                        for (var p in result) {
+                            if (result.hasOwnProperty(p)) {
+                                row.push("Patient " + result[p].id)
+                                var history_str = ""
+                                for (var i = 0; i < result[p].drugs.length; i++) {
+                                    history_str += history_str === ""
+                                        ? (result[p].drugs[i] + "(Day " +result[p].days[i]+")")
+                                        : (", " + result[p].drugs[i] + "(Day " +result[p].days[i]+")")
+                                }
+                                row.push(history_str)
+                                coll.push(row)
+                                row = []
+                            }
+                        }
+
+                        data_table.addRows(coll)
+                        var table = new google.visualization.Table(document.getElementById('category_table'));
+
+                        table.draw(data_table, {showRowNumber: true, width: '100%', height: '100%'});
+                        google.visualization.events.addListener(table, 'select', function(e) {
+                            var selection = table.getSelection();
+                            var pid = data_table.getFormattedValue(selection[0].row, 0).substr("Patient ".length);
+                            console.log(pid);
+                            var pinfo = result.find(function (item) {
+                                return Number(pid) === Number(item.id);
+                            });
+                            console.log(pid, pinfo);
+                        });
+                    },
+                    function failure() {
+                        toastr.error('Oops, failed to load category - ' + label);
+                    });
+            }
+
+            Analysis.getBIAnalysis(
+                function success(result) {
+                    var rows = [];
+
+                    var patients = result.patients;
+                    for (var key in patients) {
+                        if (patients.hasOwnProperty(key)) {
+                            rows.push([result.patientTypeNameMap[key], patients[key]])
+                        }
+                    }
+
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Patient Type');
+                    data.addColumn('number', 'Count');
+                    data.addRows(rows);
+
+                    drawChart(data);
+                    drawTable(data);
+                },
+                function failure() {
+                    toastr.error('Oops, failed to load analysis result.');
+                }
+            );
+        });
+
+
+    </script>
+</head>
+<body>
+<p>
+    <img src="images/cat.png" height="42" width="42">
+    <span class="greeting">O Hai,</span>
+    <span class="sub-greeting">according to your calculations... </span>
+</p>
+<div id="table_div"></div>
+<p>
+    <img src="images/cat.png" height="42" width="42">
+    <span class="greeting">Here,</span>
+    <span class="sub-greeting">have a donut...</span>
+</p>
+<div id="piechart"></div>
+<div id="category_table"></div>
+
+</body>
+</html>
